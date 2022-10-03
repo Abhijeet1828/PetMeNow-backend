@@ -17,8 +17,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -28,6 +31,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserDetails implements Serializable {
 	
 	private static final long serialVersionUID = 7590297035946935858L;
@@ -36,22 +41,27 @@ public class UserDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NonNull
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
 	
+	@NonNull
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 	
+	@NonNull
 	@Column(name = "user_name", nullable = false)
 	private String userName;
 	
+	@NonNull
 	@Column(name = "user_password", nullable = false)
 	private String password;
 	
 	@Column(name = "email", nullable = false)
 	private String email;
 	
-	@Column(name = "phone_number")
+	@NonNull
+	@Column(name = "phone_number", nullable = false)
 	private Long phoneNumber;
 	
 	@Column(name = "address")

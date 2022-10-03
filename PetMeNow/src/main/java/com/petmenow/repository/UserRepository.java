@@ -8,4 +8,5 @@ import com.petmenow.model.UserDetails;
 @Repository
 public interface UserRepository extends JpaRepository<UserDetails, Long> {
 
+	boolean existsByPhoneNumber(Long phoneNumber);
 }
