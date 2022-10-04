@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
 
 			BeanUtils.copyProperties(updateUserRequest, userDetails, "dateOfBirth", "id");
 			userDetails.setDateOfBirth(new Date(updateUserRequest.getDateOfBirth()));
+			userDetails.setUpdatedTimestamp(new Date());
 			
 			userRepository.save(userDetails);
 			
