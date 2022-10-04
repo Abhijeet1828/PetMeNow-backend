@@ -66,7 +66,7 @@ public class PetInformation implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedTimestamp;
 	
-	@ManyToOne(targetEntity = UserDetails.class, fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(targetEntity = UserDetails.class, fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
 	private UserDetails ownerDetails;
 	

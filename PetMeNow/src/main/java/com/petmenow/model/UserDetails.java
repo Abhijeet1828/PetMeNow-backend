@@ -82,7 +82,7 @@ public class UserDetails implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedTimestamp;
 	
-	@OneToMany(targetEntity = PetInformation.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(targetEntity = PetInformation.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "owner_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private List<PetInformation> ownerPetList;
 
