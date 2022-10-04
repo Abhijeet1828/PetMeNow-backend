@@ -2,7 +2,10 @@ package com.petmenow.constants;
 
 public enum SuccessConstants {
 	
-	USER_SIGN_UP_SUCCESS(2000, "User created successfully");
+	USER_SIGN_UP_SUCCESS(2000, "User created successfully"),
+	USER_FETCH_DETAILS(2001, "User details fetched successfully"),
+	USER_SIGN_IN_SUCCESS(2002, "User signed in successfully"),
+	USER_UPDATE_DETAILS_SUCCESS(2003, "User details updated successfully");
 	
 	private final int successCode;
 	private final String successMsg;

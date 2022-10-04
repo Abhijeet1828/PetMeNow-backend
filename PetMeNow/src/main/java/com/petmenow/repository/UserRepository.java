@@ -9,4 +9,10 @@ import com.petmenow.model.UserDetails;
 public interface UserRepository extends JpaRepository<UserDetails, Long> {
 
 	boolean existsByPhoneNumber(Long phoneNumber);
+	
+	boolean existsByUserName(String userName);
+	
+	UserDetails findFirstByUserName(String userName);
+	
+	UserDetails findFirstById(Long id);
 }
