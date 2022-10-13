@@ -1,5 +1,5 @@
 CREATE TABLE petmenowDB.user_details(
-id BIGINT NOT NULL,
+id BIGINT NOT NULL AUTO_INCREMENT,
 first_name VARCHAR(50) NOT NULL,
 last_name VARCHAR(50) NOT NULL,
 user_name VARCHAR(20),
@@ -14,7 +14,7 @@ updated_timestamp TIMESTAMP,
 PRIMARY KEY(id));
 
 CREATE TABLE petmenowDB.pet_information(
-id BIGINT NOT NULL,
+id BIGINT NOT NULL AUTO_INCREMENT,
 pet_name VARCHAR(50) NOT NULL,
 pet_type VARCHAR(20),
 pet_breed VARCHAR(50),
@@ -28,7 +28,7 @@ updated_timestamp TIMESTAMP,
 PRIMARY KEY(id));
 
 CREATE TABLE petmenowDB.adoption_foster_history(
-id BIGINT NOT NULL,
+id BIGINT NOT NULL AUTO_INCREMENT,
 title TEXT,
 history_type VARCHAR(20) NOT NULL,
 start_date DATE,
@@ -44,7 +44,7 @@ updated_timestamp TIMESTAMP,
 PRIMARY KEY(id));
 
 CREATE TABLE petmenowDB.chat_history(
-id BIGINT NOT NULL,
+id BIGINT NOT NULL AUTO_INCREMENT,
 channel_name VARCHAR(50),
 message_id VARCHAR(50),
 message_type VARCHAR(20),
@@ -55,4 +55,17 @@ message_time TIMESTAMP,
 created_timestamp TIMESTAMP,
 PRIMARY KEY(id));
 
+CREATE TABLE petmenowDB.pet_type_master(
+id BIGINT NOT NULL AUTO_INCREMENT,
+pet_type VARCHAR(100) NOT NULL,
+created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY(id));
 
+CREATE TABLE petmenowDB.pet_breed_master(
+id BIGINT NOT NULL AUTO_INCREMENT,
+pet_type_id BIGINT NOT NULL,
+pet_breed VARCHAR(500) NOT NULL,
+created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY(id));

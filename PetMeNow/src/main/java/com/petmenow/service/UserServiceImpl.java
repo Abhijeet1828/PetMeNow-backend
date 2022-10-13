@@ -3,13 +3,12 @@ package com.petmenow.service;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.petmenow.model.UserDetails;
 import com.petmenow.repository.UserRepository;
@@ -89,9 +88,9 @@ public class UserServiceImpl implements UserService {
 			BeanUtils.copyProperties(updateUserRequest, userDetails, "dateOfBirth", "id");
 			userDetails.setDateOfBirth(new Date(updateUserRequest.getDateOfBirth()));
 			userDetails.setUpdatedTimestamp(new Date());
-			
+
 			userRepository.save(userDetails);
-			
+
 			return userDetails;
 		} catch (Exception e) {
 			LOGGER.error("Exception in updateUserDetails", e);
@@ -107,10 +106,10 @@ public class UserServiceImpl implements UserService {
 				LOGGER.error("No user found by ID {}", id);
 				return 1;
 			}
-			
+
 			return userDetails;
-		} catch(Exception e) {
-			LOGGER.error("Exception in getUserDetails",e);
+		} catch (Exception e) {
+			LOGGER.error("Exception in getUserDetails", e);
 			return 0;
 		}
 	}
