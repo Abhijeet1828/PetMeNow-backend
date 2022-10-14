@@ -9,12 +9,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petmenow.model.UserDetails;
 import com.petmenow.repository.UserRepository;
 import com.petmenow.request.SignInRequest;
 import com.petmenow.request.SignUpRequest;
 import com.petmenow.request.UpdateUserRequest;
+import com.petmenow.utilities.S3Utils;
 
 @Service
 @Transactional
@@ -24,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private S3Utils s3Utils;
 
 	@Override
 	public Object userSignUp(SignUpRequest signUpRequest) {
@@ -110,6 +115,26 @@ public class UserServiceImpl implements UserService {
 			return userDetails;
 		} catch (Exception e) {
 			LOGGER.error("Exception in getUserDetails", e);
+			return 0;
+		}
+	}
+
+	@Override
+	public Object uploadUserImage(Long userId, MultipartFile multipartFile) {
+		try {
+			UserDetails userDetails = userRepository.findFirstById(userId);
+			if (Objects.isNull(userDetails)) {
+				LOGGER.error("No user found by ID {}", userId);
+				return 1;
+			}
+
+			String imageUrl = s3Utils.uploadFileUsingInputStream(multipartFile.getOriginalFilename(),
+					multipartFile.getInputStream());
+
+			userDetails.setImage(imageUrl);
+			return userRepository.save(userDetails);
+		} catch (Exception e) {
+			LOGGER.error("Exception in uploadUserImage", e);
 			return 0;
 		}
 	}

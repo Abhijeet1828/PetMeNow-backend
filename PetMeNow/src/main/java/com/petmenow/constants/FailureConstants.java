@@ -4,6 +4,7 @@ public enum FailureConstants {
 	
 	INTERNAL_SERVER_ERROR(-1000, "Oops! Something went wrong. Please try again later"),
 	METHOD_ARGUMENT_NOT_VALID_EXCEPTION(-1001, "Invalid Request! Method Argument Not Valid"),
+	FILE_TYPE_EXCEPTION(-1002, "Invalid file extension! Please try again with a valid file"),
 	USER_ALREADY_EXISTS(-2000, "Oops! Looks like the user already exists"),
 	USER_SIGN_UP_ERROR(-2001, "Oops! Something went wrong while creating user"),
 	USER_DOES_NOT_EXIST(-2002, "Oops! User not found"),
@@ -17,7 +18,9 @@ public enum FailureConstants {
 	UPDATE_PET_ERROR(-2010, "Oops! Something went wrong while updating the pet information"),
 	FETCH_PET_ERROR(-2011, "Oops! Something went wrong while fetching the pet information"),
 	PET_TYPE_FETCH_ERROR(-2012, "Oops! Something went wrong while fetching pet types"),
-	PET_BREED_SEARCH_ERROR(-2013, "Oops! Something went wrong while searching pet breeds");
+	PET_BREED_SEARCH_ERROR(-2013, "Oops! Something went wrong while searching pet breeds"),
+	USER_UPLOAD_IMAGE_ERROR(-2014, "Oops! Something went wrong while upload user image"),
+	PET_UPLOAD_IMAGE_ERROR(-2015, "Oops! Something went wrong while upload pet image");
 	
 	private final int failureCode;
 	private final String failureMsg;

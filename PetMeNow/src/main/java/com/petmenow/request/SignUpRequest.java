@@ -1,5 +1,6 @@
 package com.petmenow.request;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -24,6 +25,7 @@ public class SignUpRequest {
 	@NotBlank
 	private String userName;
 	
+	@Email
 	@NotBlank
 	private String email;
 	

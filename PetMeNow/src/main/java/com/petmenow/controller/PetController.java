@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petmenow.constants.FailureConstants;
 import com.petmenow.constants.SuccessConstants;
@@ -23,6 +25,7 @@ import com.petmenow.request.RegisterPetRequest;
 import com.petmenow.request.UpdatePetRequest;
 import com.petmenow.service.PetService;
 import com.petmenow.utilities.ResponseHelper;
+import com.petmenow.utilities.ValidatorUtils;
 
 @RestController
 @RequestMapping(value = "/pet")
@@ -118,6 +121,26 @@ public class PetController {
 
 		return ResponseHelper.generateResponse(SuccessConstants.PET_BREED_SEARCH_SUCCESS.getSuccessCode(),
 				SuccessConstants.PET_BREED_SEARCH_SUCCESS.getSuccessMsg(), response);
+	}
+
+	@PostMapping(value = "/upload-image/{id}")
+	public ResponseEntity<Object> uploadPetImage(@RequestPart(value = "file") MultipartFile file, @PathVariable Long id)
+			throws CommonException {
+		ValidatorUtils.validateFile(file, ValidatorUtils.IMAGE_TYPES);
+
+		Object response = petService.uploadPetImage(id, file);
+		if (response instanceof Integer) {
+			int error = Integer.parseInt(response.toString());
+			if (error == 1) {
+				return ResponseHelper.generateResponse(FailureConstants.PET_NOT_FOUND.getFailureCode(),
+						FailureConstants.PET_NOT_FOUND.getFailureMsg());
+			} else {
+				throw new CommonException(FailureConstants.PET_UPLOAD_IMAGE_ERROR.getFailureCode(),
+						FailureConstants.PET_UPLOAD_IMAGE_ERROR.getFailureMsg());
+			}
+		}
+		return ResponseHelper.generateResponse(SuccessConstants.PET_UPLOAD_IMAGE_SUCCESS.getSuccessCode(),
+				SuccessConstants.PET_UPLOAD_IMAGE_SUCCESS.getSuccessMsg(), response);
 	}
 
 }

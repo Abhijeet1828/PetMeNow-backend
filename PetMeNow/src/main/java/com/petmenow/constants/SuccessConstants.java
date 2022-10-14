@@ -11,7 +11,9 @@ public enum SuccessConstants {
 	PET_UPDATE_SUCCESS(2006, "Pet information updated successfully"),
 	PET_FETCH_SUCCESS(2007, "Pet information fetched successfully"),
 	PET_TYPE_FETCH_SUCCESS(2008, "Pet types fetched successfully"),
-	PET_BREED_SEARCH_SUCCESS(2009, "Pet breeds searched successfully");
+	PET_BREED_SEARCH_SUCCESS(2009, "Pet breeds searched successfully"),
+	USER_UPLOAD_IMAGE_SUCCESS(2010, "User image uploaded successfully"),
+	PET_UPLOAD_IMAGE_SUCCESS(2011, "Pet image uploaded successfully");
 	
 	private final int successCode;
 	private final String successMsg;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petmenow.model.PetInformation;
 import com.petmenow.repository.PetBreedMasterRepository;
@@ -17,6 +18,7 @@ import com.petmenow.repository.PetInformationRepository;
 import com.petmenow.repository.PetTypeMasterRepository;
 import com.petmenow.request.RegisterPetRequest;
 import com.petmenow.request.UpdatePetRequest;
+import com.petmenow.utilities.S3Utils;
 
 @Service
 @Transactional
@@ -34,6 +36,9 @@ public class PetServiceImpl implements PetService {
 
 	@Autowired
 	PetBreedMasterRepository petBreedMasterRepository;
+
+	@Autowired
+	private S3Utils s3Utils;
 
 	@Override
 	public Object registerPet(RegisterPetRequest registerPetRequest) {
@@ -121,6 +126,26 @@ public class PetServiceImpl implements PetService {
 		} catch (Exception e) {
 			LOGGER.error("Exception in searchPetBreeds", e);
 			return null;
+		}
+	}
+
+	@Override
+	public Object uploadPetImage(Long petId, MultipartFile multipartFile) {
+		try {
+			PetInformation petInfo = petInformationRepository.findFirstById(petId);
+			if (Objects.isNull(petInfo)) {
+				LOGGER.error(LOGGER_NO_PET_ASSOCIATED, petId);
+				return 1;
+			}
+
+			String imageUrl = s3Utils.uploadFileUsingInputStream(multipartFile.getOriginalFilename(),
+					multipartFile.getInputStream());
+
+			petInfo.setImage(imageUrl);
+			return petInfo;
+		} catch (Exception e) {
+			LOGGER.error("Exception in uploadPetImage", e);
+			return 0;
 		}
 	}
 

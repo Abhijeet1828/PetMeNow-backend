@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petmenow.constants.FailureConstants;
 import com.petmenow.constants.SuccessConstants;
@@ -20,6 +22,7 @@ import com.petmenow.request.SignUpRequest;
 import com.petmenow.request.UpdateUserRequest;
 import com.petmenow.service.UserService;
 import com.petmenow.utilities.ResponseHelper;
+import com.petmenow.utilities.ValidatorUtils;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -85,8 +88,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/details/id")
-	public ResponseEntity<Object> getUserDetails(@PathVariable Long id)
-			throws CommonException {
+	public ResponseEntity<Object> getUserDetails(@PathVariable Long id) throws CommonException {
 		Object response = userService.getUserDetails(id);
 		if (response instanceof Integer) {
 			int error = Integer.parseInt(response.toString());
@@ -100,6 +102,26 @@ public class UserController {
 		}
 		return ResponseHelper.generateResponse(SuccessConstants.USER_FETCH_DETAILS.getSuccessCode(),
 				SuccessConstants.USER_FETCH_DETAILS.getSuccessMsg(), response);
+	}
+
+	@PostMapping(value = "/upload-image/{id}")
+	public ResponseEntity<Object> uploadUserImage(@RequestPart(value = "file") MultipartFile file,
+			@PathVariable Long id) throws CommonException {
+		ValidatorUtils.validateFile(file, ValidatorUtils.IMAGE_TYPES);
+
+		Object response = userService.uploadUserImage(id, file);
+		if (response instanceof Integer) {
+			int error = Integer.parseInt(response.toString());
+			if (error == 1) {
+				return ResponseHelper.generateResponse(FailureConstants.USER_DOES_NOT_EXIST.getFailureCode(),
+						FailureConstants.USER_DOES_NOT_EXIST.getFailureMsg());
+			} else {
+				throw new CommonException(FailureConstants.USER_UPLOAD_IMAGE_ERROR.getFailureCode(),
+						FailureConstants.USER_UPLOAD_IMAGE_ERROR.getFailureMsg());
+			}
+		}
+		return ResponseHelper.generateResponse(SuccessConstants.USER_UPLOAD_IMAGE_SUCCESS.getSuccessCode(),
+				SuccessConstants.USER_UPLOAD_IMAGE_SUCCESS.getSuccessMsg(), response);
 	}
 
 }
