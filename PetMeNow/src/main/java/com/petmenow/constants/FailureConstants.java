@@ -20,7 +20,13 @@ public enum FailureConstants {
 	PET_TYPE_FETCH_ERROR(-2012, "Oops! Something went wrong while fetching pet types"),
 	PET_BREED_SEARCH_ERROR(-2013, "Oops! Something went wrong while searching pet breeds"),
 	USER_UPLOAD_IMAGE_ERROR(-2014, "Oops! Something went wrong while upload user image"),
-	PET_UPLOAD_IMAGE_ERROR(-2015, "Oops! Something went wrong while upload pet image");
+	PET_UPLOAD_IMAGE_ERROR(-2015, "Oops! Something went wrong while upload pet image"),
+	PLACE_ORDER_REQUEST_ERROR(-2016, "Oops! Something went wrong while placing your request"),
+	ORDER_NOT_FOUND(-2017, "Oops! No such order exists"),
+	ACCEPT_ORDER_ERROR(-2018, "Oops! Something went wrong while accepting the request"),
+	FETCH_ORDER_HISTORY_USER_ERROR(-2019, "Oops! Something went wrong while fetching order history for user"),
+	OWN_ORDER_ACCEPT_ERROR(-2020, "Oops! Cannot accept your own order request"),
+	NO_PET_FOR_FOSTER(-2021, "Oops! No pet selected for foster request");
 	
 	private final int failureCode;
 	private final String failureMsg;

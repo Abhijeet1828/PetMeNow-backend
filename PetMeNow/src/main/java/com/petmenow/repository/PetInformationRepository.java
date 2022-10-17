@@ -9,4 +9,5 @@ import com.petmenow.model.PetInformation;
 public interface PetInformationRepository extends JpaRepository<PetInformation, Long> {
 
 	PetInformation findFirstById(Long id);
+	
 }

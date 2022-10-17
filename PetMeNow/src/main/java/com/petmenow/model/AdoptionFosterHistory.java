@@ -45,6 +45,10 @@ public class AdoptionFosterHistory implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
+	@Column(name = "end_date")
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
+	
 	@Column(name = "duration_number")
 	private Integer durationNumber;
 	
@@ -60,10 +64,10 @@ public class AdoptionFosterHistory implements Serializable {
 	@Column(name = "owner_id", nullable = false)
 	private Long ownerId;
 	
-	@Column(name = "accepted_user_id", nullable = false)
+	@Column(name = "accepted_user_id")
 	private Long acceptedUserId;
 	
-	@Column(name = "allowed_pets", nullable = false)
+	@Column(name = "allowed_pets")
 	private String allowedPets;
 	
 	@Column(name = "created_timestamp", nullable = false)

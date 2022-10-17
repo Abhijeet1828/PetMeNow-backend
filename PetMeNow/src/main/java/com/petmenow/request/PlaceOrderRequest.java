@@ -23,7 +23,7 @@ public class PlaceOrderRequest {
 	private Long petId;
 
 	@NotNull
-	@Pattern(regexp = "^adoption$|^foster$")
+	@Pattern(regexp = "^ADOPTION$|^FOSTER$")
 	private String type;
 
 	@NotBlank
@@ -36,6 +36,7 @@ public class PlaceOrderRequest {
 	private Integer durationNumber;
 
 	@NotBlank
+	@Pattern(regexp = "^WEEKS$|^DAYS$")
 	private String durationType;
 
 	private List<String> allowedPets;
