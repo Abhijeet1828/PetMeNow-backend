@@ -28,4 +28,8 @@ public final class ResponseHelper {
 		return new ResponseEntity<>(commonResponse, httpStatus);
 	}
 
+	public static ResponseEntity<Object> generateResponse(CommonResponse commonResponse, HttpStatus httpStatus) {
+		return new ResponseEntity<>(commonResponse, httpStatus);
+	}
+
 }

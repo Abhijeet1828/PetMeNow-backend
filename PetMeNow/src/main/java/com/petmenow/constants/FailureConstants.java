@@ -5,6 +5,7 @@ public enum FailureConstants {
 	INTERNAL_SERVER_ERROR(-1000, "Oops! Something went wrong. Please try again later"),
 	METHOD_ARGUMENT_NOT_VALID_EXCEPTION(-1001, "Invalid Request! Method Argument Not Valid"),
 	FILE_TYPE_EXCEPTION(-1002, "Invalid file extension! Please try again with a valid file"),
+	NO_HANDLER_FOUND_EXCEPTION(-1003, "Invalid Request! No Handler Found"),
 	USER_ALREADY_EXISTS(-2000, "Oops! Looks like the user already exists"),
 	USER_SIGN_UP_ERROR(-2001, "Oops! Something went wrong while creating user"),
 	USER_DOES_NOT_EXIST(-2002, "Oops! User not found"),

@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Object userSignUp(SignUpRequest signUpRequest) {
 		try {
-			if (userRepository.existsByPhoneNumber(signUpRequest.getPhoneNumber())) {
-				LOGGER.error("User with phone number already exists");
+			if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+				LOGGER.error("User with email already exists");
 				return 1;
 			}
 
@@ -43,11 +43,10 @@ public class UserServiceImpl implements UserService {
 				return 2;
 			}
 
-			UserDetails newUser = UserDetails.builder().firstName(signUpRequest.getFirstName())
-					.lastName(signUpRequest.getLastName()).userName(signUpRequest.getUserName())
+			UserDetails newUser = UserDetails.builder().userName(signUpRequest.getUserName())
 					.email(signUpRequest.getEmail()).password(signUpRequest.getPassword())
-					.phoneNumber(signUpRequest.getPhoneNumber()).createdTimestamp(new Date())
-					.updatedTimestamp(new Date()).build();
+					.address(signUpRequest.getAddress()).createdTimestamp(new Date()).updatedTimestamp(new Date())
+					.build();
 
 			newUser = userRepository.save(newUser);
 			LOGGER.info("User created with id {}", newUser.getId());

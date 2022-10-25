@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,18 +43,17 @@ public class UserDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NonNull
-	@Column(name = "first_name", nullable = false)
+	@Column(name = "first_name")
 	private String firstName;
 	
-	@NonNull
-	@Column(name = "last_name", nullable = false)
+	@Column(name = "last_name")
 	private String lastName;
 	
 	@NonNull
 	@Column(name = "user_name", nullable = false)
 	private String userName;
 	
+	@JsonIgnore
 	@NonNull
 	@Column(name = "user_password", nullable = false)
 	private String password;
@@ -60,8 +61,7 @@ public class UserDetails implements Serializable {
 	@Column(name = "email", nullable = false)
 	private String email;
 	
-	@NonNull
-	@Column(name = "phone_number", nullable = false)
+	@Column(name = "phone_number")
 	private Long phoneNumber;
 	
 	@Column(name = "address")
