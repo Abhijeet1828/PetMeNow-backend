@@ -60,6 +60,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-aws-messaging</artifactId>
+			<version>2.2.6.RELEASE</version>
+		</dependency>
+
 		<!-- SPRING BOOT DEPENDENCIES END -->
 
 		<!-- DATABASE DEPENDENCIES START -->
@@ -143,6 +150,15 @@
 		</dependency>
 
 		<!-- AWS DEPENDENCIES END -->
+
+		<!-- PUSHER DEPENDENCIES START -->
+		<dependency>
+			<groupId>com.pusher</groupId>
+			<artifactId>pusher-http-java</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- PUSHER DEPENDENCIES END-->
 
 		<!-- MISC DEPENDENCIES START-->
 

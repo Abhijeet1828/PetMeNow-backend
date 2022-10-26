@@ -116,4 +116,22 @@ public class OrderServiceImpl implements OrderService {
 		}
 	}
 
+	@Override
+	public int deleteOrder(Long orderId) {
+		try {
+			if (!adoptionFosterHistoryRepository.existsById(orderId)) {
+				LOGGER.error("No order found by ID {}", orderId);
+				return 1;
+			}
+
+			AdoptionFosterHistory adoptionFosterHistory = adoptionFosterHistoryRepository.findFirstById(orderId);
+
+			adoptionFosterHistoryRepository.delete(adoptionFosterHistory);
+			return 2;
+		} catch (Exception e) {
+			LOGGER.error("Exception in deleteOrder", e);
+			return 0;
+		}
+	}
+
 }

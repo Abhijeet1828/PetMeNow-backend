@@ -89,7 +89,7 @@ public class UserController {
 				SuccessConstants.USER_UPDATE_DETAILS_SUCCESS.getSuccessMsg(), response);
 	}
 
-	@GetMapping(value = "/details/id")
+	@GetMapping(value = "/details/{id}")
 	public ResponseEntity<Object> getUserDetails(@PathVariable Long id) throws CommonException {
 		Object response = userService.getUserDetails(id);
 		if (response instanceof Integer) {

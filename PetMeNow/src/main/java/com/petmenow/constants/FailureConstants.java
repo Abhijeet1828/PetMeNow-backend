@@ -27,7 +27,8 @@ public enum FailureConstants {
 	ACCEPT_ORDER_ERROR(-2018, "Oops! Something went wrong while accepting the request"),
 	FETCH_ORDER_HISTORY_USER_ERROR(-2019, "Oops! Something went wrong while fetching order history for user"),
 	OWN_ORDER_ACCEPT_ERROR(-2020, "Oops! Cannot accept your own order request"),
-	NO_PET_FOR_FOSTER(-2021, "Oops! No pet selected for foster request");
+	NO_PET_FOR_FOSTER(-2021, "Oops! No pet selected for foster request"),
+	DELETE_ORDER_ERROR(-2022, "Oops! Something went wrong while deleting order");
 	
 	private final int failureCode;
 	private final String failureMsg;

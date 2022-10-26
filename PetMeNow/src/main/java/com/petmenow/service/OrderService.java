@@ -8,4 +8,6 @@ public interface OrderService {
 	public Object placeOrder(PlaceOrderRequest placeOrderRequest);
 	
 	public Object acceptOrder(AcceptOrderRequest acceptOrderRequest);
+	
+	public int deleteOrder(Long orderId);
 }

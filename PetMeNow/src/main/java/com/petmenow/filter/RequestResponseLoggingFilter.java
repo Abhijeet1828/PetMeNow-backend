@@ -1,4 +1,4 @@
-package com.petmenow.configuration;
+package com.petmenow.filter;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

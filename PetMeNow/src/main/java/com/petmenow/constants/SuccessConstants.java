@@ -19,7 +19,8 @@ public enum SuccessConstants {
 	NO_ORDER_HISTORY_FOUND(2014, "No order history found"),
 	ORDER_HISTORY_FETCH_SUCCESS(2015, "Order history for user fetched successfully"),
 	NO_ACTIVE_REQUESTS_FOUND(2016, "No active requests found"),
-	ACTIVE_REQUESTS_FETCH_SUCCESS(2017, "Active requests fetched successfully");
+	ACTIVE_REQUESTS_FETCH_SUCCESS(2017, "Active requests fetched successfully"),
+	DELETE_ORDER_SUCCESS(2018, "Order request deleted successfully");
 	
 	private final int successCode;
 	private final String successMsg;

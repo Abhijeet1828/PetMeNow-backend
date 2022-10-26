@@ -35,10 +35,10 @@ public class S3Utils {
 	@Value("${amazonProperties.bucketName}")
 	private String bucketName;
 
-	@Value("${amazonProperties.accessKey}")
+	@Value("${cloud.aws.credentials.access-key}")
 	private String accessKey;
 
-	@Value("${amazonProperties.secretKey}")
+	@Value("${cloud.aws.credentials.secret-key}")
 	private String secretKey;
 
 	@PostConstruct

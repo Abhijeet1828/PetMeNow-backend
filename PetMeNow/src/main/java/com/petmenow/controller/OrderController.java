@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,4 +76,19 @@ public class OrderController {
 				SuccessConstants.ACCEPT_ORDER_SUCCESS.getSuccessMsg(), response);
 	}
 
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<Object> deleteRequest(@PathVariable Long id) throws CommonException {
+		int response = orderService.deleteOrder(id);
+		switch (response) {
+		case 1:
+			return ResponseHelper.generateResponse(FailureConstants.ORDER_NOT_FOUND.getFailureCode(),
+					FailureConstants.ORDER_NOT_FOUND.getFailureMsg());
+		case 2:
+			return ResponseHelper.generateResponse(SuccessConstants.DELETE_ORDER_SUCCESS.getSuccessCode(),
+					SuccessConstants.DELETE_ORDER_SUCCESS.getSuccessMsg());
+		default:
+			throw new CommonException(FailureConstants.DELETE_ORDER_ERROR.getFailureCode(),
+					FailureConstants.DELETE_ORDER_ERROR.getFailureMsg());
+		}
+	}
 }
