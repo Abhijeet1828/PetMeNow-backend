@@ -28,6 +28,9 @@ public class OrderServiceImpl implements OrderService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 	@Autowired
+	private ChatService chatService;
+
+	@Autowired
 	private UserRepository userRepository;
 
 	@Autowired
@@ -104,6 +107,9 @@ public class OrderServiceImpl implements OrderService {
 				return 4;
 			}
 
+			// Create Chat Connection
+			createOrUpdateChatConnection(adoptionFosterHistory.getOwnerId(), acceptOrderRequest.getUserId());
+
 			adoptionFosterHistory.setAcceptedUserId(acceptOrderRequest.getUserId());
 			adoptionFosterHistory.setPetId(acceptOrderRequest.getPetId());
 			adoptionFosterHistory.setStatus(Constants.ORDER_STATUS_ACCEPTED);
@@ -131,6 +137,21 @@ public class OrderServiceImpl implements OrderService {
 		} catch (Exception e) {
 			LOGGER.error("Exception in deleteOrder", e);
 			return 0;
+		}
+	}
+
+	private void createOrUpdateChatConnection(Long firstUserId, Long secondUserId) {
+		int response = chatService.createOrUpdateChatConnection(firstUserId, secondUserId);
+		switch (response) {
+		case 1:
+			LOGGER.info("Existing chat connection updated");
+			break;
+		case 2:
+			LOGGER.info("New chat connection created");
+			break;
+		default:
+			LOGGER.error("Error in creating chat connection");
+			break;
 		}
 	}
 

@@ -24,7 +24,7 @@ public class WebhookServiceImpl implements WebhookService {
 	@Autowired
 	private SQSUtils sqsUtils;
 
-	@Async
+	@Async(value = "asyncThreadPoolExecutor")
 	@Override
 	public void postPusherEventToSQS(PusherEventMessage pusherEventMessage) {
 		try {

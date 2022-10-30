@@ -20,7 +20,9 @@ public enum SuccessConstants {
 	ORDER_HISTORY_FETCH_SUCCESS(2015, "Order history for user fetched successfully"),
 	NO_ACTIVE_REQUESTS_FOUND(2016, "No active requests found"),
 	ACTIVE_REQUESTS_FETCH_SUCCESS(2017, "Active requests fetched successfully"),
-	DELETE_ORDER_SUCCESS(2018, "Order request deleted successfully");
+	DELETE_ORDER_SUCCESS(2018, "Order request deleted successfully"),
+	NO_CHATS_FOUND(2019, "No chats found for user"),
+	USER_FETCH_CHATS_SUCCESS(2020, "User chats fetched successfully");
 	
 	private final int successCode;
 	private final String successMsg;

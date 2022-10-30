@@ -1,7 +1,7 @@
 CREATE TABLE petmenowDB.user_details(
 id BIGINT NOT NULL AUTO_INCREMENT,
-first_name VARCHAR(50) NOT NULL,
-last_name VARCHAR(50) NOT NULL,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
 user_name VARCHAR(20),
 user_password VARCHAR(50) NOT NULL,
 email VARCHAR(50),
@@ -32,6 +32,7 @@ id BIGINT NOT NULL AUTO_INCREMENT,
 title TEXT,
 history_type VARCHAR(20) NOT NULL,
 start_date DATE,
+end_date DATE,
 duration_number INT,
 duration_type VARCHAR(20),
 history_status VARCHAR(20),
@@ -69,3 +70,14 @@ pet_breed VARCHAR(500) NOT NULL,
 created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY(id));
+
+CREATE TABLE petmenowDB.chat_connection(
+id BIGINT NOT NULL AUTO_INCREMENT,
+first_user_id BIGINT NOT NULL,
+second_user_id BIGINT NOT NULL,
+channel_name VARCHAR(50) NOT NULL,
+created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+UNIQUE(channel_name),
+PRIMARY KEY(id)
+);
