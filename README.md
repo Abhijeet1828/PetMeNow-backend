@@ -14,30 +14,30 @@
 **REQUEST** :EMPTY \
 **RESPONSE** :
 
-```
+```JSON
 {
-"status": "UP",
-"components": {
-"db": {
-"status": "UP",
-"details": {
-"database": "MySQL",
-"validationQuery": "isValid()"
-}
-},
-"diskSpace": {
-"status": "UP",
-"details": {
-"total": 8577331200 ,
-"free": 5939519488 ,
-"threshold": 10485760 ,
-"exists": true
-}
-},
-"ping": {
-"status": "UP"
-}
-}
+  "status": "UP",
+  "components": {
+    "db": {
+      "status": "UP",
+      "details": {
+        "database": "MySQL",
+        "validationQuery": "isValid()"
+      }
+    },
+    "diskSpace": {
+      "status": "UP",
+      "details": {
+        "total": 8577331200,
+        "free": 5939519488,
+        "threshold": 10485760,
+        "exists": true
+      }
+    },
+    "ping": {
+      "status": "UP"
+    }
+  }
 }
 ```
 
@@ -61,62 +61,62 @@
 **METHOD** : POST \
 **REQUEST** :
 
-```
+```JSON
 {
-"userName" : "testUser",
-"email" : "test@gmail.com",
-"password" : "password",
-"address" : "123, Lonsdale"
+  "userName": "testUser",
+  "email": "test@gmail.com",
+  "password": "password",
+  "address": "123, Lonsdale"
 }
 ```
 #### RESPONSE : (SUCCESS)
 
-```
+```JSON
 {
-"status": {
-"statusCode": 2000 ,
-"message": "User created successfully",
-"localizedMessage": "User created successfully"
-},
-"responseData": {
-"id": 1 ,
-"firstName": "Abhijeet",
-"lastName": "S",
-"userName": "abhijeet1",
-"password": "password",
-"email": "abhijeet1@student.unimelb.edu.au",
-"phoneNumber": 474517087 ,
-"address": null,
-"image": null,
-"dateOfBirth": null,
-"createdTimestamp": "2022-10-04T03:39:52.501+00:00",
-"updatedTimestamp": "2022-10-04T03:39:52.501+00:00",
-"ownerPetList": null
-}
+  "status": {
+    "statusCode": 2000,
+    "message": "User created successfully",
+    "localizedMessage": "User created successfully"
+  },
+  "responseData": {
+    "id": 1,
+    "firstName": "Abhijeet",
+    "lastName": "S",
+    "userName": "abhijeet1",
+    "password": "password",
+    "email": "abhijeet1@student.unimelb.edu.au",
+    "phoneNumber": 474517087,
+    "address": null,
+    "image": null,
+    "dateOfBirth": null,
+    "createdTimestamp": "2022-10-04T03:39:52.501+00:00",
+    "updatedTimestamp": "2022-10-04T03:39:52.501+00:00",
+    "ownerPetList": null
+  }
 }
 ```
 #### RESPONSE: (USER EMAIL ALREADY EXISTS - ERROR)
 
-```
+```JSON
 {
-"status": {
-"statusCode": -2000,
-"message": "Oops! Looks like the user already exists",
-"localizedMessage": "Oops! Looks like the user already exists"
-},
-"responseData": {}
+  "status": {
+    "statusCode": -2000,
+    "message": "Oops! Looks like the user already exists",
+    "localizedMessage": "Oops! Looks like the user already exists"
+  },
+  "responseData": {}
 }
 ```
 #### RESPONSE: (EMAIL ADDRESS NOT WELL-FORMED - ERROR)
 
-```
+```JSON
 {
-"status": {
-"statusCode": -1001,
-"message": "email",
-"localizedMessage": "must be a well-formed email address"
-},
-"responseData": {}
+  "status": {
+    "statusCode": -1001,
+    "message": "email",
+    "localizedMessage": "must be a well-formed email address"
+  },
+  "responseData": {}
 }
 ```
 ## USER SIGN-IN API
